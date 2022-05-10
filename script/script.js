@@ -15,24 +15,34 @@ var questions =
   }
 ]
 
+var incorrectAnswer = document.getElementById("errMsg");
+var timer = document.getElementById("timer");
+var youLose = document.getElementById("youLose");
+var timeleftShow = 75;
 
+
+timer.textContent = timeleftShow;
 
 document.getElementById("start").addEventListener("click", function (){
   var qnum = 0;
+  document.getElementById("start").style.display="none";
+  var t1 = setInterval(function(){
+    timeleftShow--;
+    timer.textContent = timeleftShow;
+  }, 1000);
   
-  do
-  {
     displayQuestion(qnum);
-    qnum++;
-  }
-  while(qnum < questions.length)
+    
+
+  
+  
   
   
   function displayQuestion(qnum)
   {
     var answers = "<ul>";
     for (let i = 0; i < questions[qnum].a.length; i++) {
-      answers += "<li class=\"choice\">" + questions[qnum].a[i] + "</li>"; 
+      answers += "<li class=\"choice\" data-a=\"" + i + "\">" + questions[qnum].a[i] + "</li>"; 
     }
     answers += "</ul>";
     
@@ -44,9 +54,52 @@ document.getElementById("start").addEventListener("click", function (){
     
     document.getElementById("questions").innerHTML = "<p>" + questions[qnum].q + "</p>" + answers;
     
-    document.querySelector(".choice").addEventListener("click", function(){
-      alert("hello!");
+
+    var answerClass = document.getElementsByClassName("choice");
+    for (let i = 0; i < answerClass.length; i++) {
+      answerClass[i].addEventListener("click", function(){
+        if(this.getAttribute("data-a") == questions[qnum].c-1)
+          {
+            // Correct answer
+
+          if(qnum == questions.length - 1)
+            {
+            alert("done!");
+            clearInterval(t1);
+            }
+            else
+              {
+            qnum++;
+            displayQuestion(qnum);
+              }  
+          
+          }
+          else
+            {
+              //Wrong Answer
+            timeleftShow = timeleftShow - 10;
+            timer.textContent = timeleftShow;
+            incorrectAnswer.style.display = "block";
+            setTimeout(function(){
+              incorrectAnswer.style.display = "none";
+            }, 2000);
+            if(timeleftShow < 1)
+            {
+              timer.style.display = "none";
+              youLose.style.display = "block";
+              setTimeout(function(){
+              youLose.style.display = "none";
+              }, 3000);
+              clearInterval(t1);
+            }
+            }
+        
+       
       });
+      
+    }
+
+
   }
   
 });
