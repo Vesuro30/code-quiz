@@ -1,8 +1,50 @@
+*{
+  box-sizing: border-box;
+}
+
+body{
+  max-width: 100%;
+}
+
+#timer{
+  font-size: 32px;
+  color: crimson;
+ 
+}
+
+.container{
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: rgb(230, 221, 221);
+  border-radius: 5px;
+  
+}
+
 ul{
   list-style-type: none;
+  max-width: fit-content;
+}
+
+li:hover{
+  background-color: darkseagreen;
+  cursor: pointer;
 }
 
 #errMsg, #youLose{
   display: none;
+  color: crimson;
+  font-size: 20px;
 }
 
+#errMsg p, #youLose p{
+  margin: 2px 0;
+  padding: 0;
+}
+
+button{
+  margin: 10px auto 0 auto;
+  border: solid 2px black;
+  border-radius: 5px;
+  background-color: cadetblue;
+}

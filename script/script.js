@@ -21,14 +21,14 @@ var youLose = document.getElementById("youLose");
 var timeleftShow = 75;
 
 
-timer.textContent = timeleftShow;
+timer.textContent = "Time remaining: " + timeleftShow;
 
 document.getElementById("start").addEventListener("click", function (){
   var qnum = 0;
   document.getElementById("start").style.display="none";
   var t1 = setInterval(function(){
     timeleftShow--;
-    timer.textContent = timeleftShow;
+    timer.textContent = "Time remaining: " + timeleftShow;
   }, 1000);
   
     displayQuestion(qnum);
@@ -78,11 +78,11 @@ document.getElementById("start").addEventListener("click", function (){
             {
               //Wrong Answer
             timeleftShow = timeleftShow - 10;
-            timer.textContent = timeleftShow;
+            timer.textContent = "Time remaining: " + timeleftShow;
             incorrectAnswer.style.display = "block";
             setTimeout(function(){
               incorrectAnswer.style.display = "none";
-            }, 2000);
+            }, 1000);
             if(timeleftShow < 1)
             {
               timer.style.display = "none";
@@ -91,6 +91,10 @@ document.getElementById("start").addEventListener("click", function (){
               youLose.style.display = "none";
               }, 3000);
               clearInterval(t1);
+              setTimeout(function()
+              {
+              document.getElementById("start").style.display="block";
+              }, 3000);
             }
             }
         
