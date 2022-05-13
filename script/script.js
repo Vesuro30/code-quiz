@@ -74,6 +74,7 @@ n-number of questions can be asked (presented on the webpage along with n-number
 
 	//create references to webpage objects/elements
 	var incorrectAnswer = document.getElementById("errMsg");
+  var correctAnswer = document.getElementById("correct");
 	var timer = document.getElementById("timer");
 	var youLose = document.getElementById("youLose");
 	var questionsDiv = document.getElementById("questions");
@@ -88,7 +89,7 @@ n-number of questions can be asked (presented on the webpage along with n-number
 	var qnum = 0;
 
 	//initialze on-page display of time remaining
-	timer.textContent = timeleftShow;
+	timer.textContent = "Time remaining: " + timeleftShow;
 
 	//install an event handler on the answers list element
 	//	• set the handler on the UL; determine which answer was clicked in the handler
@@ -106,7 +107,21 @@ n-number of questions can be asked (presented on the webpage along with n-number
 			{
 			//decrement the time remaining
 			timeleftShow--;
-			timer.textContent = timeleftShow;	//show the time remaining
+      if(timeleftShow < 1)
+      {
+        clearInterval(t1);
+        youLose.style.display = "block"
+        setTimeout(function(){
+        youLose.style.display = "none"
+        timeleftShow = 75;
+        timer.textContent = "Time remaining: " + timeleftShow ;
+        startButton.style.display = "block";
+        answersList.style.display = "none";
+        questionsDiv.style.display = "none";
+        }, 3000);
+        // timeleftShow = 75;
+      }
+			timer.textContent = "Time remaining: " + timeleftShow;	//show the time remaining
 			}, 1000);
 
 		//show first question
@@ -140,7 +155,8 @@ function displayQuestion()
     for (let i = 0; i < questions[qnum].a.length; i++) {
       answers += "<li class=\"choice\" data-a=\"" + i + "\">" + questions[qnum].a[i] + "</li>"; 
     }
-    
+    questionsDiv.style.display = "block";
+    answersList.style.display = "block";
 	//install the question
     questionsDiv.innerHTML = "<p>" + questions[qnum].q + "</p>";
 	
@@ -170,8 +186,15 @@ function ProcessAnswer(e)
 		{
 		//yes
 		qnum++;
+    // immediately remove the incorrect answer message on correct answer
+    incorrectAnswer.style.display = "none";
+    // show correct answer div
+    correctAnswer.style.display = "block";
+    // set timer to remove the correct answer div
+    setTimeout(function(){
+    correctAnswer.style.display = "none";  
+    }, 1000);
 		displayQuestion();
-		return true;
 		}
 		else
 			{
@@ -181,11 +204,11 @@ function ProcessAnswer(e)
 			//set up timer to remove the message
 			setTimeout(function(){
               incorrectAnswer.style.display = "none";
-              }, 2000);
+              }, 1000);
 			
 			//deduct the penalty from the time remaining and show the new value
 			timeleftShow = timeleftShow - penaltyTime;
-			timer.textContent = timeleftShow;
+			timer.textContent = "Time remaining: " + timeleftShow;
 			
 			//return 'false' to indicate an incorrect answer
 			return false;

@@ -6,16 +6,31 @@ body{
   max-width: 100%;
 }
 
+header{
+  margin-bottom: 10px;
+}
+
+header p{
+  margin: 2px 0;
+  padding: 0;
+}
+
+h1{
+  margin: 0 8px 8px 8px;
+}
+
 #timer{
+  margin: 15px;
   font-size: 32px;
   color: crimson;
  
 }
 
 .container{
-  max-width: 500px;
-  width: 100%;
-  margin: 0 auto;
+  max-width: 800px;
+  width: fit-content;
+  margin: 50px auto 0 auto;
+  padding: 50px 75px;
   background-color: rgb(230, 221, 221);
   border-radius: 5px;
   
@@ -34,7 +49,7 @@ li:hover{
 #errMsg, #youLose{
   display: none;
   color: crimson;
-  font-size: 20px;
+  font-size: 24px;
 }
 
 #errMsg p, #youLose p{
@@ -42,8 +57,21 @@ li:hover{
   padding: 0;
 }
 
+#correct{
+  display: none;
+  color: green;
+  font-size: 24px;
+}
+
+#correct p{
+  margin: 2px 0;
+  padding: 0;
+}
+
 button{
-  margin: 10px auto 0 auto;
+  display: block;
+  margin: 10px auto;
+  padding: 5px 10px;
   border: solid 2px black;
   border-radius: 5px;
   background-color: cadetblue;

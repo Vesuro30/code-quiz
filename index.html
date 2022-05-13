@@ -4,46 +4,47 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./css/style.css">
-  <title>Document</title>
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+	<title>Document</title>
 </head>
 <body>
   <div class="container">
-    <h1>Welcome to the coding quiz!</h1>
-    <p>Click the start button below to begin.</p>
+  <header>
+  <h1>Welcome to the coding quiz!</h1>
+    <p>Click the start button to begin!</p>
+    <p>Each incorrect answer will result in a 10 second penalty.</p>
+  </header>
+  <div id="questions"> </div>
+  <div id="answers">
+  	<ul id="answersHolder"></ul>	
+  </div>
 
-    <div id="questions">
+  <div id="timer"></div>
 
-
-    </div>
-
-    <div id="timer"></div>
-
-    
-    <!-- <div id="correct">
-      <p>Correct Answer!</p>
-
-    </div> -->
-
-    <div id="errMsg">
-      <p>That is the incorrect answer!</p>
-      <p>You have lost 10 seconds.</p>
-    </div>
-    
-    <div id="youLose">
-      <p>You have run out of time and have lost the game.</p>
-      <p>Please try again.</p>
-    </div>
-    
-    <button id="start" type="button">Click to Start Quiz</button>
+  
+  
+  <div id="correct">
+    <p>That is the correct answer!</p>
   </div>
   
- 
-  <script src="./script/script.js"></script>
+  <div id="errMsg">
+    <p>That is the incorrect answer!</p>
+    <p>You have lost 10 seconds.</p>
+  </div>
   
-  <footer>
-    
-    
-  </footer>
+  <div id="youLose">
+    <p>You have run out of time and have lost the game.</p>
+    <p>Please try again.</p>
+  </div>
+  </div>
+<button id="start" type="button">Start the Quiz</button>
+
+<script src="./script/script.js"></script>
+
+
+<footer>
+
+
+</footer>
 </body>
 </html>
