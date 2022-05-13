@@ -72,6 +72,8 @@ n-number of questions can be asked (presented on the webpage along with n-number
 ]
 
 
+
+
 	//create references to webpage objects/elements
 
 	var incorrectAnswer = document.getElementById("errMsg");
@@ -82,6 +84,7 @@ n-number of questions can be asked (presented on the webpage along with n-number
 	var answersList = document.getElementById("answersHolder");
 	var startButton = document.getElementById("start");
   var youWon = document.getElementById("youWon");
+  var initials = document.getElementById("initials");
   var t1;
 	//set up configuration values
 	var timeleftShow = 75;		//max allowed time in seconds for the quiz
@@ -89,6 +92,10 @@ n-number of questions can be asked (presented on the webpage along with n-number
 
 	//global variable to hold the current question number
 	var qnum = 0;
+
+  var scores = [];
+
+
 
 	//initialze on-page display of time remaining
 	timer.textContent = "Time remaining: " + timeleftShow;
@@ -192,17 +199,21 @@ function ProcessAnswer(e)
     {
       clearInterval(t1);
       youWon.style.display = "block";
-      document.getElementById("initials").focus();
+      initials.focus();
     }
-    // immediately remove the incorrect answer message on correct answer
-    incorrectAnswer.style.display = "none";
-    // show correct answer div
-    correctAnswer.style.display = "block";
-    // set timer to remove the correct answer div
-    setTimeout(function(){
-    correctAnswer.style.display = "none";  
-    }, 1000);
-		displayQuestion();
+    else
+      {
+      // immediately remove the incorrect answer message on correct answer
+      incorrectAnswer.style.display = "none";
+      // show correct answer div
+      correctAnswer.style.display = "block";
+      // set timer to remove the correct answer div
+      setTimeout(function(){
+      correctAnswer.style.display = "none";  
+      }, 1000);
+      displayQuestion();
+
+      }
 		}
 		else
 			{
@@ -222,7 +233,7 @@ function ProcessAnswer(e)
 			return false;
 			}
 
-
+  
 
 
 	}
@@ -231,94 +242,64 @@ function ProcessAnswer(e)
 
 
 
-// var incorrectAnswer = document.getElementById("errMsg");
-// var timer = document.getElementById("timer");
-// var youLose = document.getElementById("youLose");
-// var timeleftShow = 75;
+  document.getElementById("btnSave").addEventListener("click", function()
+  {
+    var userInitials = initials.value;
+    
+    if(scores.length > 0)
+    {
+      var lowScore = scores[0].split(":")[1];
+      console.log(lowScore);
+     if(timeleftShow > lowScore)
+      {
+        scores.push(userInitials + ":" + timeleftShow);
+      }
+
+    }
+    else
+      {
+        scores[0] = userInitials + ":" + timeleftShow;
+      }
+    
+      console.log(scores);
+    
+    //strScores = localStorage.getItem("highScores");
+
+    //localStorage.setItem()
+  });
 
 
-// timer.textContent = "Time remaining: " + timeleftShow;
 
-// document.getElementById("start").addEventListener("click", function (){
-//   var qnum = 0;
-//   document.getElementById("start").style.display="none";
-//   var t1 = setInterval(function(){
-//     timeleftShow--;
-//     timer.textContent = "Time remaining: " + timeleftShow;
-//   }, 1000);
+  function swap(arr, xp, yp)
+  {
+      var temp = arr[xp];
+      arr[xp] = arr[yp];
+      arr[yp] = temp;
+  }
   
-//     displayQuestion(qnum);
-    
-
-  
-  
-//   function displayQuestion(qnum)
-//   {
-//     var answers = "<ul>";
-//     for (let i = 0; i < questions[qnum].a.length; i++) {
-//       answers += "<li class=\"choice\" data-a=\"" + i + "\">" + questions[qnum].a[i] + "</li>"; 
-//     }
-//     answers += "</ul>";
-    
-    
-
-
-
-    
-    
-//     document.getElementById("questions").innerHTML = "<p>" + questions[qnum].q + "</p>" + answers;
-    
-
-//     var answerClass = document.getElementsByClassName("choice");
-//     for (let i = 0; i < answerClass.length; i++) {
-//       answerClass[i].addEventListener("click", function(){
-//         if(this.getAttribute("data-a") == questions[qnum].c-1)
-//           {
-//             // Correct answer
-
-//           if(qnum == questions.length - 1)
-//             {
-//             alert("done!");
-//             clearInterval(t1);
-//             }
-//             else
-//               {
-//             qnum++;
-//             displayQuestion(qnum);
-//               }  
+  // An optimized version of Bubble Sort
+  function bubbleSort(arr)
+  {
+  var i, j, v1, v2, temp;
+  var n = arr.length;
+  for (i = 0; i < n-1; i++)
+    {
+      for (j = 0; j < n-i-1; j++)
+        {
+          temp = arr[j].split(":");
+          v1 = temp[1];
+          temp = arr[j+1].split(":");
+          v2 = temp[1];
           
-//           }
-//           else
-//             {
-//               //Wrong Answer
-//             timeleftShow = timeleftShow - 10;
-//             timer.textContent = "Time remaining: " + timeleftShow;
-//             incorrectAnswer.style.display = "block";
-//             setTimeout(function(){
-//               incorrectAnswer.style.display = "none";
-//             }, 1000);
-//             if(timeleftShow < 1)
-//             {
-//               timer.style.display = "none";
-//               youLose.style.display = "block";
-//               setTimeout(function(){
-//               youLose.style.display = "none";
-//               }, 3000);
-//               clearInterval(t1);
-//               setTimeout(function()
-//               {
-//               document.getElementById("start").style.display="block";
-//               }, 3000);
-//             }
-//             }
-        
-       
-//       });
-      
-//     }
 
-
-//   }
+          if (v1 > v2)
+            {
+            swap(arr,j,j+1);
+            }
+       }
   
-// });
+    }
+  }
+
+
 
