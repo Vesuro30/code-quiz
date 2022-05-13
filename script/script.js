@@ -73,6 +73,7 @@ n-number of questions can be asked (presented on the webpage along with n-number
 
 
 	//create references to webpage objects/elements
+
 	var incorrectAnswer = document.getElementById("errMsg");
   var correctAnswer = document.getElementById("correct");
 	var timer = document.getElementById("timer");
@@ -80,7 +81,8 @@ n-number of questions can be asked (presented on the webpage along with n-number
 	var questionsDiv = document.getElementById("questions");
 	var answersList = document.getElementById("answersHolder");
 	var startButton = document.getElementById("start");
-
+  var youWon = document.getElementById("youWon");
+  var t1;
 	//set up configuration values
 	var timeleftShow = 75;		//max allowed time in seconds for the quiz
 	var penaltyTime = 10;		//time deducted from remaining time upon incorrect answer
@@ -103,7 +105,7 @@ n-number of questions can be asked (presented on the webpage along with n-number
 		startButton.style.display="none";	//remove the button
 
 		//start the count-down clock; period of 1 second
-		var t1 = setInterval(function()
+		t1 = setInterval(function()
 			{
 			//decrement the time remaining
 			timeleftShow--;
@@ -185,7 +187,13 @@ function ProcessAnswer(e)
 	if (submittedAnswer == questions[qnum].c)
 		{
 		//yes
-		qnum++;
+    qnum++;
+    if(qnum == questions.length)
+    {
+      clearInterval(t1);
+      youWon.style.display = "block";
+      document.getElementById("initials").focus();
+    }
     // immediately remove the incorrect answer message on correct answer
     incorrectAnswer.style.display = "none";
     // show correct answer div
@@ -213,6 +221,10 @@ function ProcessAnswer(e)
 			//return 'false' to indicate an incorrect answer
 			return false;
 			}
+
+
+
+
 	}
 
 

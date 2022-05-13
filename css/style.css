@@ -68,6 +68,22 @@ li:hover{
   padding: 0;
 }
 
+#youWon{
+  display: none;
+  color: green;
+  font-size: 24px;
+}
+
+#youWon p{
+  margin: 2px 0;
+  padding: 0;
+}
+
+#youWon label{
+  color: black;
+  font-size: 20px;
+}
+
 button{
   display: block;
   margin: 10px auto;
