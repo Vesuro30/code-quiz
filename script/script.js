@@ -249,7 +249,9 @@ function ProcessAnswer(e)
     if(scores.length > 0)
     {
       var lowScore = scores[0].split(":")[1];
+
       console.log(lowScore);
+
      if(timeleftShow > lowScore)
       {
         scores.push(userInitials + ":" + timeleftShow);
