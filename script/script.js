@@ -86,14 +86,24 @@ n-number of questions can be asked (presented on the webpage along with n-number
   var youWon = document.getElementById("youWon");
   var initials = document.getElementById("initials");
   var t1;
+
+
+
 	//set up configuration values
 	var timeleftShow = 75;		//max allowed time in seconds for the quiz
 	var penaltyTime = 10;		//time deducted from remaining time upon incorrect answer
+  var maximumSavedScores = 3;  // Maximum number of retained scores
+
+
 
 	//global variable to hold the current question number
 	var qnum = 0;
 
   var scores = [];
+
+
+
+
 
 
 
@@ -109,10 +119,11 @@ n-number of questions can be asked (presented on the webpage along with n-number
 	//install click event handler on "start" button
 	startButton.addEventListener("click", function ()
 		{
-		startButton.style.display="none";	//remove the button
-
-		//start the count-down clock; period of 1 second
-		t1 = setInterval(function()
+		startButton.style.display = "none";	//remove the button
+    youWon.style.display = "none";  
+    timeleftShow = 75;  
+		//start the count-down clock; period of 1  second
+		t1 = setInterval(function() 
 			{
 			//decrement the time remaining
 			timeleftShow--;
@@ -200,6 +211,11 @@ function ProcessAnswer(e)
       clearInterval(t1);
       youWon.style.display = "block";
       initials.focus();
+      qnum = 0;
+      setTimeout(function()
+      {
+        startButton.style.display = "block";
+      }, 3000);
     }
     else
       {
@@ -245,29 +261,51 @@ function ProcessAnswer(e)
   document.getElementById("btnSave").addEventListener("click", function()
   {
     var userInitials = initials.value;
+
     
+
+    if(!localStorage.getItem("highScores"))
+    {   
+      // If there are no scores on the list, add the first score to the list.
+      scores[0] = userInitials + ":" + timeleftShow;
+    }
+    // If no scores have been saved, save the first score
+
     if(scores.length > 0)
     {
       var lowScore = scores[0].split(":")[1];
 
       console.log(lowScore);
 
-     if(timeleftShow > lowScore)
+    // If the users score is higher than the lowest saved score OR
+    // we have not reached the maximum saved scores we save the users score
+
+     if((timeleftShow > lowScore) || (scores.length < maximumSavedScores))
       {
+        // Add this new score to the list of high scores
         scores.push(userInitials + ":" + timeleftShow);
+
+        // Sort the scores
+        bubbleSort(scores);
+
+        // Are there more than the maximum number of scores on the list
+        if(scores.length > maximumSavedScores)
+          {
+          //  Yes;  Remove the lowest score from the list
+          scores.shift();
+
+          }
       }
 
-    }
-    else
-      {
-        scores[0] = userInitials + ":" + timeleftShow;
-      }
     
+    }
+    
+      localStorage.setItem("highScores", JSON.stringify(scores));
       console.log(scores);
     
-    //strScores = localStorage.getItem("highScores");
-
-    //localStorage.setItem()
+      
+    localStorage.getItem("highScores");
+      console.log(JSON.stringify(scores));
   });
 
 
