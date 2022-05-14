@@ -180,7 +180,7 @@ function ProcessAnswer(e)
 	
 	On ENTRY
 		qnum	integer		The question number
-		e		object		The current event object
+		e		  object		The current event object
 	
 	On EXIT
 		The function returns TRUE if the answer is correct; FALSE otherwise
