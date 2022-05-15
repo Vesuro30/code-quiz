@@ -37,43 +37,45 @@ h1{
   
 }
 
+#answers{
+  width: 60%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+#answers li{
+  margin-bottom: .5em;
+
+}
+
 /* #answersHolder{
   margin: 0;
 } */
 
 ul{
   list-style-type: none;
-  max-width: fit-content;
-  margin: 0 auto;
+  /* max-width: fit-content; */
+  /* margin: 0 auto; */
   padding: 0;
 }
 
-li:hover{
+ul li:hover{
   background-color: darkseagreen;
   cursor: pointer;
 }
 
-#errMsg, #youLose{
+#errMsg, #youLose, #initialError{
   display: none;
   color: crimson;
   font-size: 24px;
 }
 
-#errMsg p, #youLose p{
-  margin: 2px 0;
-  padding: 0;
-}
-
-#correct{
+#correct, #restart{
   display: none;
   color: green;
   font-size: 24px;
 }
 
-#correct p{
-  margin: 2px 0;
-  padding: 0;
-}
 
 #youWon{
   display: none;
@@ -81,7 +83,7 @@ li:hover{
   font-size: 24px;
 }
 
-#youWon p{
+#youWon p, #initial p, #correct p, #errMsg p, #youLose p, #restart p{
   margin: 2px 0;
   padding: 0;
 }
@@ -89,6 +91,14 @@ li:hover{
 #youWon label{
   color: black;
   font-size: 20px;
+}
+
+#userHighScores{
+  display: none;
+}
+
+#userHighScores ul{
+  font-size: 125%;
 }
 
 button{

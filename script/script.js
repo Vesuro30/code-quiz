@@ -85,6 +85,9 @@ n-number of questions can be asked (presented on the webpage along with n-number
 	var startButton = document.getElementById("start");
   var youWon = document.getElementById("youWon");
   var initials = document.getElementById("initials");
+  var initialEl = document.getElementById("initialError");
+  var userHighScores = document.getElementById("userHighScores");
+  var restart = document.getElementById("restart");
   var t1;
 
 
@@ -92,13 +95,13 @@ n-number of questions can be asked (presented on the webpage along with n-number
 	//set up configuration values
 	var timeleftShow = 75;		//max allowed time in seconds for the quiz
 	var penaltyTime = 10;		//time deducted from remaining time upon incorrect answer
-  var maximumSavedScores = 3;  // Maximum number of retained scores
+  var maximumSavedScores = 10;  // Maximum number of retained scores
 
 
 
 	//global variable to hold the current question number
 	var qnum = 0;
-
+  var initialized = false;
   var scores = [];
 
 
@@ -120,7 +123,9 @@ n-number of questions can be asked (presented on the webpage along with n-number
 	startButton.addEventListener("click", function ()
 		{
 		startButton.style.display = "none";	//remove the button
-    youWon.style.display = "none";  
+    youWon.style.display = "none"; 
+    restart.style.display = "none";
+    userHighScores.style.display = "none"; 
     timeleftShow = 75;  
 		//start the count-down clock; period of 1  second
 		t1 = setInterval(function() 
@@ -212,10 +217,6 @@ function ProcessAnswer(e)
       youWon.style.display = "block";
       initials.focus();
       qnum = 0;
-      setTimeout(function()
-      {
-        startButton.style.display = "block";
-      }, 3000);
     }
     else
       {
@@ -254,24 +255,46 @@ function ProcessAnswer(e)
 
 	}
 
-
-
-
-
+  
+  
+  
+  // Add event listener to save button
   document.getElementById("btnSave").addEventListener("click", function()
   {
-    var userInitials = initials.value;
-
+    // Get users initials from the initials input
+    var userInitials = initials.value.trim();
     
+    youWon.style.display = "none";
+    initials.value = "";
+    restart.style.display = "block"
+    startButton.style.display = "block";
+    
+    
+    if(!userInitials)
+    {
+      initialEl.style.display = "block";
+      setTimeout(function()
+      {
+        initialEl.style.display = "none";
+      }, 2000)
+    }
 
-    if(!localStorage.getItem("highScores"))
+    var local = localStorage.getItem("highScores");
+
+    if(local === null)
     {   
       // If there are no scores on the list, add the first score to the list.
       scores[0] = userInitials + ":" + timeleftShow;
     }
-    // If no scores have been saved, save the first score
+    else
+      {
+        // Convert string to an array
+        scores = JSON.parse(local);
+      }
 
-    if(scores.length > 0)
+
+      // Check to see if there are previous scores on the list
+    if(initialized)
     {
       var lowScore = scores[0].split(":")[1];
 
@@ -300,12 +323,22 @@ function ProcessAnswer(e)
     
     }
     
+      initialized = true;
       localStorage.setItem("highScores", JSON.stringify(scores));
       console.log(scores);
+
+      scores.reverse();
     
-      
-    localStorage.getItem("highScores");
-      console.log(JSON.stringify(scores));
+      userHighScores.innerHTML = "";
+
+      for (let i = 0; i < scores.length; i++) 
+      {
+        userHighScores.style.display = "block";
+        userHighScores.innerHTML += "<li>" + scores[i] + "</li>";
+         
+      }
+
+
   });
 
 
