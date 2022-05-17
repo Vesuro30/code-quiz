@@ -180,7 +180,7 @@ n-number of questions can be asked (presented on the webpage along with n-number
         youLose.style.display = "block"
         setTimeout(function(){
         youLose.style.display = "none"
-        timeleftShow = 75;
+        timeleftShow = 90;
         timer.textContent = "Time remaining: " + timeleftShow ;
         startButton.style.display = "block";
         answersList.style.display = "none";
