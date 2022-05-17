@@ -311,6 +311,7 @@ function ProcessAnswer(e)
     answersList.style.display = "none";
     resetHighScores.style.display = "none";
     initialized = false;
+    scores = [];
 
   });
   
