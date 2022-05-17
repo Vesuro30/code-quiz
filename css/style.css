@@ -112,7 +112,7 @@ ul li:hover{
 /* Hide and style the high scores list */
 #userHighScores{
   display: none;
-  font-size: 125%;
+  font-size: 140%;
 }
 
 /* define the size of the text on the high scores list */
