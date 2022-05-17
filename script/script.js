@@ -310,8 +310,8 @@ function ProcessAnswer(e)
     questionsDiv.style.display = "none";
     answersList.style.display = "none";
     resetHighScores.style.display = "none";
-    // initialized = false;
-    // scores = [];
+    initialized = false;
+    scores = [];
 
   });
   
@@ -326,6 +326,8 @@ function ProcessAnswer(e)
     restart.style.display = "block"
     startButton.style.display = "block";
     resetHighScores.style.display = "block";
+    questionsDiv.style.display = "none";
+    answersList.style.display = "none";
     initials.value = "";
     
     // If there are no initials entered, display an error message.
