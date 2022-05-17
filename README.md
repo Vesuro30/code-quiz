@@ -2,9 +2,9 @@
 
 ## Your Task
 
-At some point in your journey to become a full-stack web developer, you’ll likely be asked to complete a coding assessment&mdash;perhaps as part of an interview process. A typical coding assessment includes both multiple-choice questions and interactive coding challenges. 
+At some point in your journey to become a full-stack web developer, you’ll likely be asked to complete a coding assessment&mdash;perhaps as part of an interview process. A typical coding assessment includes both multiple-choice questions and interactive coding challenges.
 
-To help familiarize you with these tests and allow you to use the skills covered in this module, this Challenge invites you to build a timed coding quiz with multiple-choice questions. This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean, polished, and responsive user interface. 
+To help familiarize you with these tests and allow you to use the skills covered in this module, this Challenge invites you to build a timed coding quiz with multiple-choice questions. This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean, polished, and responsive user interface.
 
 This week’s coursework will equip you with all the skills you need to succeed in this assignment.
 
@@ -32,68 +32,30 @@ WHEN the game is over
 THEN I can save my initials and my score
 ```
 
-## Mock-Up
+This script runs behind an html page in order to implement a "quiz" in which
+n-number of questions can be asked (presented on the webpage along with n-number
+of multiple-choice answers). The quiz-taker starts the quiz with a button push,
+which presents the first question and starts a count-down clock.
+Answers are submitted by clicking on the desired answer. If the answer is correct,
+a subsequent question and its associated answer choices are presented. If the
+answer is incorrect, the participant is shown an "incorrect" message and the time
+remaining on the clock is reduced by a defined number of seconds as a penalty
+for submitting an incorrect answer. The participant is not shown another question
+until s/he has answered the current one correctly.
+The quiz ends upon either of the following conditions:
+• All questions have been answered correctly
+• The count-down clock reaches zero
 
-The following animation demonstrates the application functionality:
+    The count-down clock is stopped when the quiz ends, and the time remaining is shown.
 
-![A user clicks through an interactive coding quiz, then enters initials to save the high score before resetting and starting over.](./Assets/04-web-apis-homework-demo.gif)
+    Upon quiz conclusion, the participant is asked for his/her name, and that name,
+    along with the time remaining, are stored in the browser's local storage.
 
-## Grading Requirements
+define the questions, their answer choices, and the number of the correct answer
+• "questions" is an array of question objects, with each object containing a question,
+the multiple-choice answers for the question, and the identity of the correct answer
 
-> **Note**: If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
->
-> * A repository that has no code
->
-> * A repository that includes a unique name but nothing else
->
-> * A repository that includes only a README file but nothing else
->
-> * A repository that only includes starter code
-
-This Challenge is graded based on the following criteria: 
-
-### Technical Acceptance Criteria: 40%
-
-* Satisfies all of the preceding acceptance criteria.
-
-### Deployment: 32%
-
-* Application deployed at live URL.
-
-* Application loads with no errors.
-
-* Application GitHub URL submitted.
-
-* GitHub repository contains application code.
-
-### Application Quality: 15%
-
-* Application user experience is intuitive and easy to navigate.
-
-* Application user interface style is clean and polished.
-
-* Application resembles the mock-up functionality provided in the Challenge instructions.
-
-### Repository Quality: 13%
-
-* Repository has a unique name.
-
-* Repository follows best practices for file structure and naming conventions.
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages.
-
-* Repository contains quality readme file with description, screenshot, and link to deployed application.
-
-## Review
-
-You are required to submit BOTH of the following for review:
-
-* The URL of the functional, deployed application.
-
-* The URL of the GitHub repository, with a unique name and a readme describing the project.
-
----
-
-© 2022 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
+• each question object is structured as:
+Property q string The question text
+a array of strings Each answer text
+c integer Number of correct answer

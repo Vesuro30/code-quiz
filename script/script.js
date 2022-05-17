@@ -20,17 +20,17 @@ n-number of questions can be asked (presented on the webpage along with n-number
   
 	Upon quiz conclusion, the participant is asked for his/her name, and that name, 
 	along with the time remaining, are stored in the browser's local storage.
-  */
+  
  
- //define the questions, their answer choices, and the number of the correct answer
- //	• "questions" is an array of question objects, with each object containing a question,
- //	  the multiple-choice answers for the question, and the identity of the correct answer
- //
- //	• each question object is structured as:
- //Property q		string	          The question text
- //				 a		array of strings  Each answer text
- //				 c		integer			  Number of correct answer
-
+ define the questions, their answer choices, and the number of the correct answer
+ 	• "questions" is an array of question objects, with each object containing a question,
+ 	  the multiple-choice answers for the question, and the identity of the correct answer
+ 
+ 	• each question object is structured as:
+ Property q		string	          The question text
+ 				 a		array of strings  Each answer text
+ 				 c		integer			  Number of correct answer
+*/
 
 
 
