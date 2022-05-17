@@ -133,7 +133,7 @@ n-number of questions can be asked (presented on the webpage along with n-number
 
 
 	//set up configuration values
-	var timeleftShow = 90;		//max allowed time in seconds for the quiz
+	var timeleftShow = 120;		//max allowed time in seconds for the quiz
 	var penaltyTime = 10;		//time deducted from remaining time upon incorrect answer
   var maximumSavedScores = 10;  // Maximum number of retained scores
 
@@ -170,7 +170,8 @@ n-number of questions can be asked (presented on the webpage along with n-number
     userHighScores.style.display = "none";
     resetHighScores.style.display = "none";
     onHighScoreReset.style.display = "none"; 
-    timeleftShow = 90;  
+    timeleftShow = 120;  
+    timer.textContent = "Time remaining: " + timeleftShow;
 		//start the count-down clock; period of 1  second
 		t1 = setInterval(function() 
 			{
@@ -182,7 +183,7 @@ n-number of questions can be asked (presented on the webpage along with n-number
         youLose.style.display = "block"
         setTimeout(function(){
         youLose.style.display = "none"
-        timeleftShow = 90;
+        timeleftShow = 120;
         timer.textContent = "Time remaining: " + timeleftShow ;
         startButton.style.display = "block";
         answersList.style.display = "none";
