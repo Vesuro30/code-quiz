@@ -38,6 +38,10 @@ h1{
   
 }
 
+#questions{
+  font-size: 120%;
+}
+
 /* Style answers */
 #answers{
   max-width: 40%;
@@ -108,13 +112,13 @@ ul li:hover{
 /* Hide and style the high scores list */
 #userHighScores{
   display: none;
-  font-size: 115%;
+  font-size: 125%;
 }
 
 /* define the size of the text on the high scores list */
-#userHighScores ul{
+/* #userHighScores ul{
   font-size: 125%;
-}
+} */
 
 /* Style buttons */
 button{
