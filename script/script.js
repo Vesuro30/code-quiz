@@ -58,16 +58,54 @@ n-number of questions can be asked (presented on the webpage along with n-number
    },
     
    {
-    q: "This is question 3. The correct answer is #3.",
-    a: ["Answer 1","Answer 2","Answer 3","Answer 4"],
+    q: "Which of the Following Events is Used To Check if an Eement has Lost Focus",
+    a: ["1. Onclick()","2. OnFocus()","3. onBlur()","4. None of These"],
     c: 3
    },
     
    {
-    q: "This is question 4. The correct answer is #2.",
-    a: ["Answer 1","Answer 2","Answer 3","Answer 4"],
+    q: "A JavaScript File Has An Extension of:",
+    a: ["1. .java","2. .js","3. .javascript","4. .xml"],
     c: 2
+   },
+
+   {
+     q:"What does HTML stand for?",
+     a: ["Hyper Trainer Marking Language", "Hyper Text Marketing Language", "Hyper Text Markup Language", "Hyper Text Markup Leveler"],
+     c: 3
+   },
+
+   {
+     q:"Given x = new Date(), how do you represent x as a String in universal time (time zone +0000)?",
+     a: ["1. X.toUTCString();", "2. X.getUTCDate();", "3. X.getUTC();", "4. None of these"],
+     c: 1
+
+   },
+
+   {
+    q:"Inside which HTML element do we put the JavaScript?",
+    a: ["1. Js", "2. JavaScript", "3. Script", "4. Sripting"],
+    c: 3
+   },
+
+   {
+    q:"What does JSON stand for?",
+    a: ["1.  JavaScript Object Notation", "2. JavaScript Oriented Notation", "3. JavaScript Online Notation", "4. JavaScript On Node"],
+    c: 1
+   },
+
+   {
+    q:"You have to change the background color of the page programmatically, which of the following instructions is correct?",
+    a: ["1. document.body.background = 'red'", "2. document.body.color = 'red'", "3. document.body.style.background = 'red'", "4. document.body.style.color = 'red'"],
+    c: 3
+   },
+
+   {
+    q:'What is the value of the variable a? var a = "cat".length * 2;',
+    a: ["1. 3", "2. 1", "3. 0", "4. 6"],
+    c: 4
    }
+
 
 ]
 
@@ -88,12 +126,14 @@ n-number of questions can be asked (presented on the webpage along with n-number
   var initialEl = document.getElementById("initialError");
   var userHighScores = document.getElementById("userHighScores");
   var restart = document.getElementById("restart");
+  var resetHighScores = document.getElementById("resetHighScores");
+  var onHighScoreReset = document.getElementById("onHighScoreReset")
   var t1;
 
 
 
 	//set up configuration values
-	var timeleftShow = 75;		//max allowed time in seconds for the quiz
+	var timeleftShow = 90;		//max allowed time in seconds for the quiz
 	var penaltyTime = 10;		//time deducted from remaining time upon incorrect answer
   var maximumSavedScores = 10;  // Maximum number of retained scores
 
@@ -101,7 +141,9 @@ n-number of questions can be asked (presented on the webpage along with n-number
 
 	//global variable to hold the current question number
 	var qnum = 0;
+  //global variable to see if there are current high scores in the scores array
   var initialized = false;
+  //global variable initializing the empty scores array (to hold the high scores)
   var scores = [];
 
 
@@ -126,7 +168,7 @@ n-number of questions can be asked (presented on the webpage along with n-number
     youWon.style.display = "none"; 
     restart.style.display = "none";
     userHighScores.style.display = "none"; 
-    timeleftShow = 75;  
+    timeleftShow = 90;  
 		//start the count-down clock; period of 1  second
 		t1 = setInterval(function() 
 			{
@@ -173,7 +215,7 @@ function displayQuestion()
 */
 	{
 	//construct the "answers" part of the question
-	//	• each answer will be constructed as a list item in an unordered list
+	//	 each answer will be constructed as a list item in an unordered list
     var answers = '';	//start the list
 	
 	//get and append each answer; install the answer number in a data attribute
@@ -203,7 +245,7 @@ function ProcessAnswer(e)
 */
 	{
 	//get the number of the submitted answer
-	//	• note that the submitted answer is "0-based" while the correct answers are "1-based"
+	//	 note that the submitted answer is "0-based" while the correct answers are "1-based"
 	var submittedAnswer = e.target.getAttribute('data-a') * 1 + 1; //add 1 to correlate the bases
 	
 	//correct answer?
@@ -235,7 +277,7 @@ function ProcessAnswer(e)
 		else
 			{
 			//no
-			//	• show the "incorrect" message
+			//	 show the "incorrect" message
 			incorrectAnswer.style.display = "block";
 			//set up timer to remove the message
 			setTimeout(function(){
@@ -254,8 +296,16 @@ function ProcessAnswer(e)
 
 
 	}
+  //  Add event listener to the reset high scores button
+  document.getElementById("resetHighScores").addEventListener("click", function()
+  {
+    localStorage.clear();
+    userHighScores.style.display = "none";
+    restart.style.display = "none";
+    // youWon.style.display = "none";
+    onHighScoreReset.style.display = "block";
 
-  
+  });
   
   
   // Add event listener to save button
@@ -268,8 +318,10 @@ function ProcessAnswer(e)
     initials.value = "";
     restart.style.display = "block"
     startButton.style.display = "block";
+    resetHighScores.style.display = "block";
     
-    
+    // If there are no initials entered, display an error message.
+    // Initials MUST be entered here to proceed.
     if(!userInitials)
     {
       initialEl.style.display = "block";
@@ -280,7 +332,7 @@ function ProcessAnswer(e)
     }
 
     var local = localStorage.getItem("highScores");
-
+    // Checking to see if there are scores stored in localStorage
     if(local === null)
     {   
       // If there are no scores on the list, add the first score to the list.
@@ -293,7 +345,7 @@ function ProcessAnswer(e)
       }
 
 
-      // Check to see if there are previous scores on the list
+      // Check to see if there are scores on the list (in localStorage)
     if(initialized)
     {
       var lowScore = scores[0].split(":")[1];
@@ -322,17 +374,18 @@ function ProcessAnswer(e)
 
     
     }
-    
+      // Set initialized to true indicating that there are already scores in localStorage
       initialized = true;
       localStorage.setItem("highScores", JSON.stringify(scores));
       console.log(scores);
 
       scores.reverse();
-    
+      
       userHighScores.innerHTML = "";
 
       for (let i = 0; i < scores.length; i++) 
       {
+        // Display the high scores list
         userHighScores.style.display = "block";
         userHighScores.innerHTML += "<li>" + scores[i] + "</li>";
          
@@ -342,7 +395,7 @@ function ProcessAnswer(e)
   });
 
 
-
+  //  Function to sort and swap the high scores (scores array)
   function swap(arr, xp, yp)
   {
       var temp = arr[xp];
@@ -350,7 +403,7 @@ function ProcessAnswer(e)
       arr[yp] = temp;
   }
   
-  // An optimized version of Bubble Sort
+  // Function to sort and swap the high scores (scores array)
   function arraySort(arr)
   {
   var i, j, v1, v2, temp;

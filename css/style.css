@@ -18,7 +18,7 @@ header p{
 h1{
   margin: 0 8px 8px 8px;
 }
-
+/* Style the timer */
 #timer{
   margin: 15px;
   font-size: 32px;
@@ -26,6 +26,7 @@ h1{
  
 }
 
+/* Style the container div */
 .container{
   max-width: 60%;
   width: 100%;
@@ -37,21 +38,31 @@ h1{
   
 }
 
+/* Style answers */
 #answers{
-  width: 60%;
+  width: fit-content;
   margin: 0 auto;
+  font-size: 115%;
   text-align: left;
 }
 
+/* Space the answers list items */
 #answers li{
   margin-bottom: .5em;
 
 }
 
-/* #answersHolder{
-  margin: 0;
-} */
+/* Style the resetHighScores div */
+#resetHighScores{
+  display: none;
+  margin: 10px auto;
+  padding: 5px 10px;
+  border: solid 2px black;
+  border-radius: 5px;
+  background-color: cadetblue;
+}
 
+/* Style unordered lists */
 ul{
   list-style-type: none;
   /* max-width: fit-content; */
@@ -59,48 +70,48 @@ ul{
   padding: 0;
 }
 
+/* Add hover effect to li items within a ul */
 ul li:hover{
   background-color: darkseagreen;
   cursor: pointer;
 }
 
+/* hide and style the following divs on load */
 #errMsg, #youLose, #initialError{
   display: none;
   color: crimson;
   font-size: 24px;
 }
 
-#correct, #restart{
+/* Hide and style the following divs */
+#correct, #restart, #youWon, #onHighScoreReset{
   display: none;
   color: green;
   font-size: 24px;
 }
 
-
-#youWon{
-  display: none;
-  color: green;
-  font-size: 24px;
-}
-
-#youWon p, #initial p, #correct p, #errMsg p, #youLose p, #restart p{
+/* Style all p elements within the following divs */
+#youWon p, #initial p, #correct p, #errMsg p, #youLose p, #restart p #onHighScoreReset p{
   margin: 2px 0;
   padding: 0;
 }
 
 #youWon label{
   color: black;
-  font-size: 20px;
+  font-size: 115%;
 }
-
+/* Hide and style the high scores list */
 #userHighScores{
   display: none;
+  font-size: 115%;
 }
 
+/* define the size of the text on the high scores list */
 #userHighScores ul{
   font-size: 125%;
 }
 
+/* Style buttons */
 button{
   display: block;
   margin: 10px auto;
