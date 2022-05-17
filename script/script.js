@@ -309,7 +309,7 @@ function ProcessAnswer(e)
         scores.push(userInitials + ":" + timeleftShow);
 
         // Sort the scores
-        bubbleSort(scores);
+        arraySort(scores);
 
         // Are there more than the maximum number of scores on the list
         if(scores.length > maximumSavedScores)
@@ -351,7 +351,7 @@ function ProcessAnswer(e)
   }
   
   // An optimized version of Bubble Sort
-  function bubbleSort(arr)
+  function arraySort(arr)
   {
   var i, j, v1, v2, temp;
   var n = arr.length;
