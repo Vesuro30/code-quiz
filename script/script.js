@@ -316,6 +316,7 @@ function ProcessAnswer(e)
     
     youWon.style.display = "none";
     initials.value = "";
+    userHighScores.style.display = "block";
     restart.style.display = "block"
     startButton.style.display = "block";
     resetHighScores.style.display = "block";
@@ -426,6 +427,3 @@ function ProcessAnswer(e)
   
     }
   }
-
-
-
