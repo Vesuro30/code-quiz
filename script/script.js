@@ -167,7 +167,9 @@ n-number of questions can be asked (presented on the webpage along with n-number
 		startButton.style.display = "none";	//remove the button
     youWon.style.display = "none"; 
     restart.style.display = "none";
-    userHighScores.style.display = "none"; 
+    userHighScores.style.display = "none";
+    resetHighScores.style.display = "none";
+    onHighScoreReset.style.display = "none"; 
     timeleftShow = 90;  
 		//start the count-down clock; period of 1  second
 		t1 = setInterval(function() 
@@ -302,8 +304,12 @@ function ProcessAnswer(e)
     localStorage.clear();
     userHighScores.style.display = "none";
     restart.style.display = "none";
-    // youWon.style.display = "none";
+    youWon.style.display = "none";
     onHighScoreReset.style.display = "block";
+    questionsDiv.style.display = "none";
+    answersList.style.display = "none";
+    resetHighScores.style.display = "none";
+    initialized = false;
 
   });
   
