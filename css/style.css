@@ -120,3 +120,24 @@ button{
   border-radius: 5px;
   background-color: cadetblue;
 }
+
+@media screen and(max-width: 768px){
+  .container{
+    max-width: 80%;
+    width: 100%;
+    margin: 5px;
+    padding: 5px;
+  }
+
+}
+
+@media screen and (max-width: 500px){
+
+  .container{
+    max-width: 92%;
+    width: 100%;
+    margin: 3px;
+    padding: 3px;
+  }
+}
+
