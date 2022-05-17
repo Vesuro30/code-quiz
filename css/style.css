@@ -123,9 +123,9 @@ button{
 
 @media screen and(max-width: 768px){
   .container{
-    max-width: 80%;
+    max-width: 90%;
     width: 100%;
-    margin: 5px;
+    margin: 15px auto;
     padding: 5px;
   }
 
@@ -136,7 +136,7 @@ button{
   .container{
     max-width: 92%;
     width: 100%;
-    margin: 3px;
+    margin: 10px auto;
     padding: 3px;
   }
 }
