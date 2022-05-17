@@ -315,11 +315,10 @@ function ProcessAnswer(e)
     var userInitials = initials.value.trim();
     
     youWon.style.display = "none";
-    initials.value = "";
-    userHighScores.style.display = "block";
     restart.style.display = "block"
     startButton.style.display = "block";
     resetHighScores.style.display = "block";
+    initials.value = "";
     
     // If there are no initials entered, display an error message.
     // Initials MUST be entered here to proceed.
@@ -332,18 +331,18 @@ function ProcessAnswer(e)
       }, 2000)
     }
 
-    var local = localStorage.getItem("highScores");
+    var local = localStorage.getItem("currentUserHighScores");
     // Checking to see if there are scores stored in localStorage
-    if(local === null)
+   if(local === null)
     {   
       // If there are no scores on the list, add the first score to the list.
-      scores[0] = userInitials + ":" + timeleftShow;
+      scores[0] = userInitials + ":" + timeleftShow ;
     }
     else
       {
         // Convert string to an array
         scores = JSON.parse(local);
-      }
+      };
 
 
       // Check to see if there are scores on the list (in localStorage)
@@ -377,7 +376,7 @@ function ProcessAnswer(e)
     }
       // Set initialized to true indicating that there are already scores in localStorage
       initialized = true;
-      localStorage.setItem("highScores", JSON.stringify(scores));
+      localStorage.setItem("currentUserHighScores", JSON.stringify(scores));
       console.log(scores);
 
       scores.reverse();
@@ -390,7 +389,7 @@ function ProcessAnswer(e)
         userHighScores.style.display = "block";
         userHighScores.innerHTML += "<li>" + scores[i] + "</li>";
          
-      }
+      };
 
 
   });
