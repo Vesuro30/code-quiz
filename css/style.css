@@ -40,7 +40,8 @@ h1{
 
 /* Style answers */
 #answers{
-  width: fit-content;
+  max-width: 30%;
+  width: 100%;
   margin: 0 auto;
   font-size: 115%;
   text-align: left;
@@ -49,6 +50,10 @@ h1{
 /* Space the answers list items */
 #answers li{
   margin-bottom: .5em;
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 8px;
+
 
 }
 
@@ -128,6 +133,10 @@ button{
     margin: 15px auto;
     padding: 5px;
   }
+  #answers, #answers li{
+    max-width: 80%;
+    width: 100%;
+  }
 
 }
 
@@ -138,6 +147,11 @@ button{
     width: 100%;
     margin: 10px auto;
     padding: 3px;
+  }
+  #answers, #answers li{
+    max-width: 90%;
+    width: 100%;
+    
   }
 }
 
