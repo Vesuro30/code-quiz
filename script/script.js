@@ -133,7 +133,7 @@ n-number of questions can be asked (presented on the webpage along with n-number
 
 
 	//set up configuration values
-	var timeleftShow = 100;		//max allowed time in seconds for the quiz
+	var timeleftShow = 150;		//max allowed time in seconds for the quiz
 	var penaltyTime = 10;		//time deducted from remaining time upon incorrect answer
   var maximumSavedScores = 10;  // Maximum number of retained scores
 
@@ -170,7 +170,7 @@ n-number of questions can be asked (presented on the webpage along with n-number
     userHighScores.style.display = "none";
     resetHighScores.style.display = "none";
     onHighScoreReset.style.display = "none"; 
-    timeleftShow = 100;  
+    timeleftShow = 150;  
     timer.textContent = "Time remaining: " + timeleftShow;
 		//start the count-down clock; period of 1  second
 		t1 = setInterval(function() 
@@ -183,7 +183,7 @@ n-number of questions can be asked (presented on the webpage along with n-number
         youLose.style.display = "block"
         setTimeout(function(){
         youLose.style.display = "none"
-        timeleftShow = 100;
+        timeleftShow = 150;
         timer.textContent = "Time remaining: " + timeleftShow ;
         startButton.style.display = "block";
         answersList.style.display = "none";
@@ -423,9 +423,9 @@ function ProcessAnswer(e)
       for (j = 0; j < n-i-1; j++)
         {
           temp = arr[j].split(":");
-          v1 = temp[1];
+          v1 = Number(temp[1]);
           temp = arr[j+1].split(":");
-          v2 = temp[1];
+          v2 = Number(temp[1]);
           
 
           if (v1 > v2)
