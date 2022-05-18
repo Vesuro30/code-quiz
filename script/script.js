@@ -133,7 +133,8 @@ n-number of questions can be asked (presented on the webpage along with n-number
 
 
 	//set up configuration values
-	var timeleftShow = 150;		//max allowed time in seconds for the quiz
+  var maxTime = 120
+	var timeleftShow;		//max allowed time in seconds for the quiz
 	var penaltyTime = 10;		//time deducted from remaining time upon incorrect answer
   var maximumSavedScores = 10;  // Maximum number of retained scores
 
@@ -141,8 +142,6 @@ n-number of questions can be asked (presented on the webpage along with n-number
 
 	//global variable to hold the current question number
 	var qnum = 0;
-  //global variable to see if there are current high scores in the scores array
-  var initialized = false;
   //global variable initializing the empty scores array (to hold the high scores)
   var scores = [];
 
@@ -157,8 +156,9 @@ n-number of questions can be asked (presented on the webpage along with n-number
 
 	//install an event handler on the answers list element
 	//	• set the handler on the UL; determine which answer was clicked in the handler
-	answersList.addEventListener("click",function(e){
-		ProcessAnswer(e);
+	answersList.addEventListener("click",function(e)
+    {
+		  ProcessAnswer(e);
 		});
 
 	//install click event handler on "start" button
@@ -170,7 +170,7 @@ n-number of questions can be asked (presented on the webpage along with n-number
     userHighScores.style.display = "none";
     resetHighScores.style.display = "none";
     onHighScoreReset.style.display = "none"; 
-    timeleftShow = 150;  
+    timeleftShow = maxTime;  
     timer.textContent = "Time remaining: " + timeleftShow;
 		//start the count-down clock; period of 1  second
 		t1 = setInterval(function() 
@@ -183,7 +183,7 @@ n-number of questions can be asked (presented on the webpage along with n-number
         youLose.style.display = "block"
         setTimeout(function(){
         youLose.style.display = "none"
-        timeleftShow = 150;
+        timeleftShow = maxTime;
         timer.textContent = "Time remaining: " + timeleftShow ;
         startButton.style.display = "block";
         answersList.style.display = "none";
@@ -310,7 +310,6 @@ function ProcessAnswer(e)
     questionsDiv.style.display = "none";
     answersList.style.display = "none";
     resetHighScores.style.display = "none";
-    initialized = false;
     scores = [];
 
   });
@@ -352,12 +351,8 @@ function ProcessAnswer(e)
       {
         // Convert string to an array
         scores = JSON.parse(local);
-      };
 
 
-      // Check to see if there are scores on the list (in localStorage)
-    if(initialized)
-    {
       var lowScore = scores[0].split(":")[1];
 
       console.log(lowScore);
@@ -383,9 +378,8 @@ function ProcessAnswer(e)
       }
 
     
-    }
-      // Set initialized to true indicating that there are already scores in localStorage
-      initialized = true;
+      }
+
       localStorage.setItem("currentUserHighScores", JSON.stringify(scores));
       console.log(scores);
 
