@@ -105,13 +105,7 @@ n-number of questions can be asked (presented on the webpage along with n-number
     a: ["1. 3", "2. 1", "3. 0", "4. 6"],
     c: 4
    }
-
-
 ]
-
-
-
-
 	//create references to webpage objects/elements
 
 	var incorrectAnswer = document.getElementById("errMsg");
@@ -130,25 +124,14 @@ n-number of questions can be asked (presented on the webpage along with n-number
   var onHighScoreReset = document.getElementById("onHighScoreReset")
   var t1;
 
-
-
 	//set up configuration values
 	var timeleftShow = 120;		//max allowed time in seconds for the quiz
 	var penaltyTime = 10;		//time deducted from remaining time upon incorrect answer
   var maximumSavedScores = 10;  // Maximum number of retained scores
-
-
-
 	//global variable to hold the current question number
 	var qnum = 0;
   //global variable initializing the empty scores array (to hold the high scores)
   var scores = [];
-
-
-
-
-
-
 
 	//initialze on-page display of time remaining
 	timer.textContent = "Time remaining: " + timeleftShow;
@@ -197,8 +180,6 @@ n-number of questions can be asked (presented on the webpage along with n-number
 		displayQuestion();
 
 		});
-
-
 function displayQuestion()
 /*
 	This function retrieves a question object from the "questions" array and
@@ -293,10 +274,6 @@ function ProcessAnswer(e)
 			//return 'false' to indicate an incorrect answer
 			return false;
 			}
-
-  
-
-
 	}
   //  Add event listener to the reset high scores button
   document.getElementById("resetHighScores").addEventListener("click", function()
@@ -311,9 +288,7 @@ function ProcessAnswer(e)
     resetHighScores.style.display = "none";
     scores = [];
 
-  });
-  
-  
+  }); 
   // Add event listener to save button
   document.getElementById("btnSave").addEventListener("click", function()
   {
@@ -338,7 +313,6 @@ function ProcessAnswer(e)
         initialEl.style.display = "none";
       }, 2000)
     }
-
     var local = localStorage.getItem("currentUserHighScores");
     // Checking to see if there are scores stored in localStorage
    if(local === null)
@@ -372,13 +346,9 @@ function ProcessAnswer(e)
           {
           //  Yes;  Remove the lowest score from the list
           scores.shift();
-
           }
+      } 
       }
-
-    
-      }
-
       localStorage.setItem("currentUserHighScores", JSON.stringify(scores));
       console.log(scores);
 
@@ -391,13 +361,8 @@ function ProcessAnswer(e)
         // Display the high scores list
         userHighScores.style.display = "block";
         userHighScores.innerHTML += "<li>" + scores[i] + "</li>";
-         
       };
-
-
   });
-
-
   //  Function to sort and swap the high scores (scores array)
   function swap(arr, xp, yp)
   {
@@ -405,7 +370,6 @@ function ProcessAnswer(e)
       arr[xp] = arr[yp];
       arr[yp] = temp;
   }
-  
   // Function to sort and swap the high scores (scores array)
   function arraySort(arr)
   {
